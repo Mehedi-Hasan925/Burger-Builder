@@ -1,0 +1,11 @@
+.navLink {
+  color: bisque !important;
+  font-size: 18px;
+  padding-right: 30px !important;
+}
+.navLink:hover {
+  color: rgb(224, 135, 18) !important;
+}
+.navbar {
+  background: #0c5498;
+}
