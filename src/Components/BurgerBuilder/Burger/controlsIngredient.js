@@ -30,7 +30,7 @@ export default function controlsIngredient(props) {
                 }
                
             </Card.Body>
-            <Card.Footer>Price: BDT</Card.Footer>
+            <Card.Footer><b>Price: BDT.{props.totalPrice}/-</b></Card.Footer>
             </Card>
         </div>
     )

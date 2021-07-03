@@ -1,6 +1,10 @@
+import { Button } from 'react-bootstrap';
 import React from 'react'
 import Ingredient from '../Ingredient/Ingredient';
 import ControlsIngredient from './controlsIngredient';
+
+
+
 
 const Burger=(props)=>{
     // console.log(props.ingredients);
@@ -25,7 +29,10 @@ const Burger=(props)=>{
             <Ingredient type="bread-bottom" />
             </div>
             <div className="col-md-4">
-                <ControlsIngredient addIngredientHandle={props.addIngredientHandle} removeIngredientHandle={props.removeIngredientHandle} />
+                <ControlsIngredient totalPrice={props.totalPrice} addIngredientHandle={props.addIngredientHandle} removeIngredientHandle={props.removeIngredientHandle} />
+                <div className="">
+                    <Button disabled={!props.purchaseable} variant="secondary" style={{width:"100%",marginTop:"5px"}} onClick={props.modalShow}>ORDER NOW</Button>
+                </div>
             </div>
         </div>
     )
