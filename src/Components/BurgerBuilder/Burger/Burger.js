@@ -7,7 +7,7 @@ import ControlsIngredient from './controlsIngredient';
 
 
 const Burger=(props)=>{
-    // console.log(props.ingredients);
+    console.log(props.purchaseable);
     let ingredientArr = props.ingredients.map((item)=>{
         let ingredientAmount=[...Array(item.amount).keys()]
         // console.log(ingredientAmount);

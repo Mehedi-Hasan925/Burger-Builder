@@ -3,17 +3,31 @@ import Burger from './Burger/Burger'
 import OrderModal from './Burger/orderModal'
 import Checkout from './Checkout/checkout'
 import {Route,Switch,Redirect} from 'react-router-dom';
+import {connect} from 'react-redux'
+import {ADD_INGREDIENT,REMOVE_INGREDIENT,UPDATE_PURCHASEABLE} from '../../redux/actionCreator'
 
-export default class BurgerBuilder extends Component {
+
+const mapStateToProps=(state)=>{
+    return{
+        ingredients:state.ingredients,
+        totalPrice:state.totalPrice,
+        purchaseable:state.purchaseable
+    }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        ADD_INGREDIENT:(igtype)=>dispatch(ADD_INGREDIENT(igtype)),
+        REMOVE_INGREDIENT:(igtype)=>dispatch(REMOVE_INGREDIENT(igtype)),
+        UPDATE_PURCHASEABLE:()=>dispatch(UPDATE_PURCHASEABLE())
+
+        }
+    }
+
+
+class BurgerBuilder extends Component {
     state={
-        ingredients:[
-            {type:"bread-salad",amount:0,price:20},
-            {type:"bread-meat",amount:0,price:40},
-            {type:"bread-cheese",amount:0,price:30},
-        ],
-        totalPrice:70,
-        modalShow:false,
-        purchaseable:false
+        modalShow:false
     }
     
 
@@ -34,58 +48,27 @@ export default class BurgerBuilder extends Component {
 
 
     addIngredientHandle=(type)=>{
-        let Price = this.state.totalPrice;
-       let ingradients = [...this.state.ingredients]
-       for(let item of ingradients){
-           if(item.type===type){
-               item.amount++
-               Price = this.state.totalPrice + item.price
-           }
-       }
-       this.setState({
-           ingradients:ingradients,
-           totalPrice:Price
-       })
-       this.updatePurchaseable(this.state.ingredients)
+        this.props.ADD_INGREDIENT(type)
+        this.props.UPDATE_PURCHASEABLE()
     }
 
     removeIngredientHandle=(type)=>{
-        let Price = this.state.totalPrice;
-        let ingradients = [...this.state.ingredients]
-       for(let item of ingradients){
-           if(item.type===type && item.amount!==0){
-               item.amount--
-               Price = this.state.totalPrice - item.price
-           }
-       }
-       this.setState({
-           ingradients:ingradients,
-           totalPrice:Price
-       })
-       this.updatePurchaseable(this.state.ingredients)
-    }
-
-    updatePurchaseable=(ingredients)=>{
-        let sum = 0;
-        for(let item of ingredients){
-            sum=sum + item.amount
-        }
-        this.setState({
-            purchaseable:sum>0,
-            checkoutable:sum>0
-        })
+        this.props.REMOVE_INGREDIENT(type)
+        this.props.UPDATE_PURCHASEABLE()
     }
 
     render() {
         return (
             <div className="container">
-                <OrderModal show={this.state.modalShow} onHide={this.hideModal} price={this.state.totalPrice} summary={this.state.ingredients}  />
+                <OrderModal show={this.state.modalShow} onHide={this.hideModal} price={this.props.totalPrice} summary={this.props.ingredients}  />
                 <Switch>
-                    <Route path="/home" exact render={()=><Burger ingredients={this.state.ingredients} addIngredientHandle={this.addIngredientHandle} removeIngredientHandle={this.removeIngredientHandle} totalPrice={this.state.totalPrice} modalShow={this.showModal} purchaseable={this.state.purchaseable} />} />
-                    <Route path="/checkout" exact render={()=><Checkout totalPrice={this.state.totalPrice} summary={this.state.ingredients} checkoutable={this.state.checkoutable} />} />
+                    <Route path="/home" exact render={()=><Burger ingredients={this.props.ingredients} addIngredientHandle={this.addIngredientHandle} removeIngredientHandle={this.removeIngredientHandle} totalPrice={this.props.totalPrice} modalShow={this.showModal} purchaseable={this.props.purchaseable} />} />
+                    <Route path="/checkout" exact render={()=><Checkout totalPrice={this.props.totalPrice} summary={this.props.ingredients} checkoutable={this.props.purchaseable} />} />
                     <Redirect from="/home" to="/" />
                 </Switch>
             </div>
         )
     }
 }
+
+export default connect(mapStateToProps,mapDispatchToProps) (BurgerBuilder);
