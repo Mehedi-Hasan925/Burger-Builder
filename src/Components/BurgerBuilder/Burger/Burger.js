@@ -31,7 +31,7 @@ const Burger=(props)=>{
             <div className="col-md-4">
                 <ControlsIngredient totalPrice={props.totalPrice} addIngredientHandle={props.addIngredientHandle} removeIngredientHandle={props.removeIngredientHandle} />
                 <div className="">
-                    <Button disabled={!props.purchaseable} variant="secondary" style={{width:"100%",marginTop:"5px"}} onClick={props.modalShow}>ORDER NOW</Button>
+                    <Button disabled={!props.purchaseable} style={{width:"100%",marginTop:"5px",background:"#D70F64"}} onClick={props.modalShow}>ORDER NOW</Button>
                 </div>
             </div>
         </div>

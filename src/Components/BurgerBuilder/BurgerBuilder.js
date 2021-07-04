@@ -64,7 +64,7 @@ class BurgerBuilder extends Component {
                 <Switch>
                     <Route path="/home" exact render={()=><Burger ingredients={this.props.ingredients} addIngredientHandle={this.addIngredientHandle} removeIngredientHandle={this.removeIngredientHandle} totalPrice={this.props.totalPrice} modalShow={this.showModal} purchaseable={this.props.purchaseable} />} />
                     <Route path="/checkout" exact render={()=><Checkout totalPrice={this.props.totalPrice} summary={this.props.ingredients} checkoutable={this.props.purchaseable} />} />
-                    <Redirect from="/home" to="/" />
+                    <Redirect from="/" to="/home" />
                 </Switch>
             </div>
         )
