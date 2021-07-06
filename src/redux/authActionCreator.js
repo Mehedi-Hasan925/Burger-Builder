@@ -12,8 +12,15 @@ export const authSuccess = (token,userId)=>{
     }
 }
 
+export const AuthLoading=(isloading)=>{
+    return{
+        type:actionTypes.AUTH_LOADING,
+        payload:isloading
+    }
+}
 
 export const auth=(email,password,mode)=>dispatch=>{
+    dispatch(AuthLoading(true))
     const authData ={
         email:email,
         password:password,
@@ -31,6 +38,7 @@ export const auth=(email,password,mode)=>dispatch=>{
 
     axios.post(authUrl + API_KEY, authData )
     .then(response=>{
+        dispatch(AuthLoading(false))
         if(response.status===200){
             localStorage.setItem('token',response.data.idToken)
             localStorage.setItem('userId',response.data.localId)
@@ -39,7 +47,9 @@ export const auth=(email,password,mode)=>dispatch=>{
             dispatch(authSuccess(response.data.idToken,response.data.localId))
         }
     })
-    .catch(err=>console.log(err.message))
+    .catch(err=>{
+        dispatch(AuthLoading(false))
+    })
 }
 
 
@@ -47,24 +57,27 @@ export const checkAuth=()=>dispatch=>{
     const token = localStorage.getItem('token')
     if(!token){
         //logout
+        dispatch(logout());
     }
     else{
         const expiredTime = new Date(localStorage.getItem('expiredTime'))
         if(expiredTime<=new Date()){
             //logout
+            dispatch(logout());
         }
         else{
             const userId = localStorage.getItem('userId')
-            dispatch(authSuccess(token,userId))
+            dispatch(authSuccess(token,userId));
         }
     }
     
 }
 
-
-export const authLoading=()=>{
+export const logout=()=>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('expiredTime');
     return{
-        type:actionTypes.AUTH_LOADING
+        type:actionTypes.LOG_OUT
     }
-    
 }

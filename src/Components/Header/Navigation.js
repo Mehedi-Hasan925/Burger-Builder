@@ -21,7 +21,7 @@ const Navigation=(props)=>{
             <Nav className="mx-auto">
                 <Nav.Link as={Link} to="/" className="navLink">Home</Nav.Link>
                 <Nav.Link as={Link} to="/orders" className="navLink">Orders</Nav.Link>
-                {/* <Nav.Link as={Link} to="/signout" className="navLink">Sign Out</Nav.Link> */}
+                <Nav.Link as={Link} to="/logout" className="navLink">Logout</Nav.Link>
                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1" >Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

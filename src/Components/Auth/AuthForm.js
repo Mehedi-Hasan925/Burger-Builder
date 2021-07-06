@@ -2,21 +2,37 @@ import React, { Component } from 'react'
 import { Formik } from 'formik';
 import {Form,Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-import { auth } from '../../redux/authActionCreator';
+import { auth,AuthLoading } from '../../redux/authActionCreator';
 import { connect } from 'react-redux';
+import Spinner from '../Spinner/spinner';
 
+
+const mapStateToProps=(state)=>{
+    console.log(state)
+    return{
+        authLoading:state.authLoading
+    }
+}
 
 const mapDispatchToProps=dispatch=>{
     return{
-        auth:(email,password)=>dispatch(auth(email,password))
+        auth:(email,password,mode)=>dispatch(auth(email,password,mode)),
+        AuthLoading:(isloading)=>dispatch(AuthLoading(isloading))
     }
 }
 
 class AuthForm extends Component {
+    componentDidMount(){
+        this.props.AuthLoading(false)
+    }
     render() {
-        return (
-            <div>
-               <Formik 
+        let form = null;
+        if(this.props.authLoading){
+            form=<Spinner />
+        }
+        else{
+            form=(
+                <Formik 
                     initialValues={
                         {email:"",Password:"",ConfirmPassWord:""}
                     }
@@ -81,9 +97,15 @@ class AuthForm extends Component {
                     )}
 
                </Formik>
+
+            )
+        }
+        return (
+            <div>
+               {form}
             </div>
         )
     }
 }
 
-export default connect(null,mapDispatchToProps) (AuthForm);
+export default connect(mapStateToProps,mapDispatchToProps) (AuthForm);

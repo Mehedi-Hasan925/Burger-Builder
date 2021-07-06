@@ -11,6 +11,7 @@ const initalState={
     orderErr:false,
     totalPrice:70,
     purchaseable:false,
+    authLoading:false,
 
     // authenticaton
     token:null,
@@ -103,7 +104,22 @@ export const Reducer=(state=initalState,action)=>{
                 token:action.payload.token,
                 userId:action.payload.userId
             }
+        
 
+        case actionTypes.LOG_OUT:
+            return{
+                ...state,
+                token:null,
+                userId:null
+            }
+        
+
+        case actionTypes.AUTH_LOADING:
+            // console.log(action.payload)
+            return{
+                ...state,
+                authLoading:action.payload
+            }
 
         default:
             return state

@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import {ADD_INGREDIENT,REMOVE_INGREDIENT,UPDATE_PURCHASEABLE} from '../../redux/actionCreator'
 import AuthForm from '../Auth/AuthForm'
 import LogIn from '../Auth/logIn' 
+import Logout from '../Auth/logout'
 
 
 
@@ -80,7 +81,7 @@ class BurgerBuilder extends Component {
                     <Route path="/" exact render={()=><Burger ingredients={this.props.ingredients} addIngredientHandle={this.addIngredientHandle} removeIngredientHandle={this.removeIngredientHandle} totalPrice={this.props.totalPrice} modalShow={this.showModal} purchaseable={this.props.purchaseable} key='2'  />} />
                     <Route path="/checkout" exact render={()=><Checkout totalPrice={this.props.totalPrice} summary={this.props.ingredients} checkoutable={this.props.purchaseable} key='1' />} />
                     <Route path="/orders" exact render={()=><Orders />} />
-                    {/* <Route path="/logout" exact render={()=><LogOut />} /> */}
+                    <Route path="/logout" exact render={()=><Logout />} />
                     {/* <Redirect from="/" to="/home" /> */}
                     <Redirect to="/" />
                 </Switch>
