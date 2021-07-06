@@ -11,11 +11,13 @@ const initalState={
     orderErr:false,
     totalPrice:70,
     purchaseable:false,
-    authLoading:false,
+    
 
     // authenticaton
     token:null,
-    userId:null
+    userId:null,
+    authLoading:false,
+    authFailedMsg:null,
 }
 
 export const Reducer=(state=initalState,action)=>{
@@ -110,7 +112,8 @@ export const Reducer=(state=initalState,action)=>{
             return{
                 ...state,
                 token:null,
-                userId:null
+                userId:null,
+                authFailedMsg:null,
             }
         
 
@@ -119,6 +122,14 @@ export const Reducer=(state=initalState,action)=>{
             return{
                 ...state,
                 authLoading:action.payload
+            }
+        
+
+        case actionTypes.AUTH_FAILED:
+            console.log(action.payload);
+            return{
+                ...state,
+                authFailedMsg:action.payload
             }
 
         default:

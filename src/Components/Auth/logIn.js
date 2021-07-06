@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik';
-import {Form,Button} from 'react-bootstrap'
+import {Form,Button,Alert} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { auth } from '../../redux/authActionCreator';
 import {connect} from 'react-redux'
+import Spinner from '../Spinner/spinner';
 
+
+const mapStateToProps=(state)=>{
+    return{
+        authLoading:state.authLoading,
+        authFailedMsg:state.authFailedMsg,
+    }
+}
 
 const mapDispatchToProps=(dispatch)=>{
     return{
@@ -13,10 +21,20 @@ const mapDispatchToProps=(dispatch)=>{
 }
 
 class LogIn extends Component {
+    
     render() {
-        return (
-            <div>
-               <Formik 
+        let error = null;
+        if(this.props.authFailedMsg!==null){
+            error=(<div className="col-md-6 mx-auto"><Alert className="mt-4 text-center" key="1" variant="danger">{this.props.authFailedMsg}</Alert></div>)
+        }
+
+        let form = null;
+        if(this.props.authLoading){
+            form=<Spinner />
+        }
+        else{
+            form = (
+                <Formik 
                     initialValues={
                         {email:"",Password:"",ConfirmPassWord:""}
                     }
@@ -72,9 +90,15 @@ class LogIn extends Component {
                     )}
 
                </Formik>
+            )
+        }
+        return (
+            <div>
+               {error}
+               {form}
             </div>
         )
     }
 }
 
-export default connect(null,mapDispatchToProps) (LogIn)
+export default connect(mapStateToProps,mapDispatchToProps) (LogIn)

@@ -7,6 +7,13 @@ import {RESET_INGREDIENTS} from '../../../redux/actionCreator'
 import { connect } from 'react-redux'
 
 
+
+const mapStateToProps=(state)=>{
+    return {
+        userId:state.userId,
+        token:state.token,
+    }
+}
 const mapDispatchToProps=(dispatch)=>{
     return{
         RESET_INGREDIENTS:()=>dispatch(RESET_INGREDIENTS()),
@@ -47,11 +54,12 @@ class checkout extends Component {
                     paymentType:payment
                 },
             totalPrice:this.props.totalPrice,
-            orderTime: new Date()
+            orderTime: new Date(),
+            userId:this.props.userId
         }
         
 
-        axios.post("https://burger-builder-mehedi-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json",order)
+        axios.post("https://burger-builder-mehedi-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?auth="+this.props.token,order)
         .then(response=>{
             if(response.status===200){
                 this.setState({
@@ -160,4 +168,4 @@ class checkout extends Component {
     }
 }
 
-export default connect(null,mapDispatchToProps) (checkout);
+export default connect(mapStateToProps,mapDispatchToProps) (checkout);

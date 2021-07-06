@@ -49,6 +49,8 @@ export const auth=(email,password,mode)=>dispatch=>{
     })
     .catch(err=>{
         dispatch(AuthLoading(false))
+        // console.log(err.response.data.error.message);
+        dispatch(authFailed(err.response.data.error.message))
     })
 }
 
@@ -71,6 +73,14 @@ export const checkAuth=()=>dispatch=>{
         }
     }
     
+}
+
+export const authFailed=(message)=>{
+    return{
+        type:actionTypes.AUTH_FAILED,
+        payload:message,
+    }
+
 }
 
 export const logout=()=>{

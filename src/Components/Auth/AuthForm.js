@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik';
-import {Form,Button} from 'react-bootstrap'
+import {Form,Button,Alert} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { auth,AuthLoading } from '../../redux/authActionCreator';
 import { connect } from 'react-redux';
@@ -8,9 +8,10 @@ import Spinner from '../Spinner/spinner';
 
 
 const mapStateToProps=(state)=>{
-    console.log(state)
+    
     return{
-        authLoading:state.authLoading
+        authLoading:state.authLoading,
+        authFailedMsg:state.authFailedMsg,
     }
 }
 
@@ -26,6 +27,11 @@ class AuthForm extends Component {
         this.props.AuthLoading(false)
     }
     render() {
+        let error = null;
+        if(this.props.authFailedMsg!==null){
+            error=(<div className="col-md-6 mx-auto"><Alert className="mt-4 text-center" key="1" variant="danger">{this.props.authFailedMsg}</Alert></div>)
+        }
+
         let form = null;
         if(this.props.authLoading){
             form=<Spinner />
@@ -102,6 +108,7 @@ class AuthForm extends Component {
         }
         return (
             <div>
+                {error}
                {form}
             </div>
         )

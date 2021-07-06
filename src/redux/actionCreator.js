@@ -42,8 +42,9 @@ export const orderLoadFailed = ()=>{
         type:actionTypes.ORDER_LOAD_FAILED
     }
 }
-export const fetchOrder=()=>dispatch=>{
-    axios.get("https://burger-builder-mehedi-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json")
+export const fetchOrder=(token,userId)=>dispatch=>{
+    const queryParam = '&orderBy="userId"&equalTo="'+userId+'"'
+    axios.get('https://burger-builder-mehedi-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?auth='+token+queryParam)
     .then(response=>{
         dispatch(orderLoaded(response.data))
     })
