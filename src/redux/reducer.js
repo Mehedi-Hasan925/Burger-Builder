@@ -6,8 +6,15 @@ const initalState={
         {type:"bread-meat",amount:0,price:40},
         {type:"bread-cheese",amount:0,price:30},
     ],
+    orders:[],
+    orderLoading:true,
+    orderErr:false,
     totalPrice:70,
-    purchaseable:false
+    purchaseable:false,
+
+    // authenticaton
+    token:null,
+    userId:null
 }
 
 export const Reducer=(state=initalState,action)=>{
@@ -50,8 +57,54 @@ export const Reducer=(state=initalState,action)=>{
                 ...state,
                 purchaseable:sum>0
             }
+
+        case actionTypes.RESET_INGREDIENTS:
             
+            return{
+                ...state,
+                ingredients:[
+                    {type:"bread-salad",amount:0,price:20},
+                    {type:"bread-meat",amount:0,price:40},
+                    {type:"bread-cheese",amount:0,price:30},
+                ],
+                totalPrice:70,
+                purchaseable:false
+            }
             
+        
+        case actionTypes.ORDER_LOADED:
+            let orders=[]
+            for(let key in action.payload){
+                orders.push(
+                    {
+                        ...action.payload[key],
+                        id:key
+                    }
+                    )
+            }
+            return{
+                ...state,
+                orders:orders,
+                orderLoading:false,
+            }
+        
+        case actionTypes.ORDER_LOAD_FAILED:
+            return{
+                ...state,
+                orderErr:true,
+                orderLoading:false
+
+            }
+        
+        // Authentication
+        case actionTypes.AUTH_SUCCESS:
+            return{
+                ...state,
+                token:action.payload.token,
+                userId:action.payload.userId
+            }
+
+
         default:
             return state
             
