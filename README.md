@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+<a href="https://burger-builder-mehedi.web.app/"><h2>See Project Demo Here</h2></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Signup Page
+<p>When any user enter the Burger Builder Project, he/she has to signup first. The signup page is like as follows-</p>
+<img src = "https://github.com/Mehedi-Hasan925/Burger-Builder/blob/9bf685d74b5b0155ca955496c6a3c3c372e03849/signup.JPG"><br><br>
 
-In the project directory, you can run:
+### Login Page
+After completing signup, user should login.
+<img src = "https://github.com/Mehedi-Hasan925/Burger-Builder/blob/9bf685d74b5b0155ca955496c6a3c3c372e03849/login.JPG"><br><br>
 
-### `npm start`
+### Home Page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src = "https://github.com/Mehedi-Hasan925/Burger-Builder/blob/9bf685d74b5b0155ca955496c6a3c3c372e03849/home.JPG"><br><br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Add Ingredients
+Customer add ingredients as his/her preferences.
+<img src = "https://github.com/Mehedi-Hasan925/Burger-Builder/blob/9bf685d74b5b0155ca955496c6a3c3c372e03849/add%20ingredients.JPG"><br><br>
 
-### `npm test`
+### Order Now
+Click order now and then show the order details to the customer.
+<img src="https://github.com/Mehedi-Hasan925/Burger-Builder/blob/9bf685d74b5b0155ca955496c6a3c3c372e03849/order.JPG"><br><br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Continue to Checkout
+In the order details customer click the continue to checkout process the order.
+<img src="https://github.com/Mehedi-Hasan925/Burger-Builder/blob/9bf685d74b5b0155ca955496c6a3c3c372e03849/checkout.JPG"><br><br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Fillup Checkout Details
+<img src="https://github.com/Mehedi-Hasan925/Burger-Builder/blob/9bf685d74b5b0155ca955496c6a3c3c372e03849/fillup_checkout.jpg"><br><br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Place Order
+<p>After completing the checkout details, customer place the order by clicking the button place order. Then if successfully add order, show "order placed successfully"</p>
+<img src="https://github.com/Mehedi-Hasan925/Burger-Builder/blob/9bf685d74b5b0155ca955496c6a3c3c372e03849/place_order.JPG"><br><br>
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### see Customers all orders
+<p>Customer can see all his/her orders in the order tab.</p>
+<img src="https://github.com/Mehedi-Hasan925/Burger-Builder/blob/9bf685d74b5b0155ca955496c6a3c3c372e03849/orders.JPG">
